@@ -1,0 +1,62 @@
+/* login.scss */
+
+.wrapper-login {
+  display: flex;
+  align-items: center;
+  background-color: #f2f2f2;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.form {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.login-text {
+  color: #09415b;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 32px;
+  align-items: center;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.login-email,
+.login-password {
+  width: 450px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-bottom: solid 1px #000;
+}
+
+.login-btn {
+  display: flex;
+  width: 450px;
+  padding: 20px 30px;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #1182B6;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background-color: #0056b3;
+  transition: 0.7s;
+}
+
+.icon-img {
+  transform: translateY(-45px);
+  margin-left: 480px;
+}
