@@ -1,5 +1,6 @@
-import { Route, Routes, Navigate } from "react-router-dom";
-import Header from "./components/Header/Header";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import Header from "./components/Home/Home";
 import Login from "./pages/login/login";
 import FormDataProvider from "./context/FormDataContext";
 
@@ -8,16 +9,7 @@ function App() {
     <FormDataProvider>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route
-          path="/home"
-          element={
-            localStorage.getItem("formData") ? (
-              <Header />
-            ) : (
-              <Navigate to="/" replace />
-            )
-          }
-        />
+        <Route path="/home" element={<Header />} />
       </Routes>
     </FormDataProvider>
   );

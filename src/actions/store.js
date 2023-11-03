@@ -1,10 +1,11 @@
-// store.js
 import { createStore } from "redux";
 
+// Define the initial state
 const initialState = {
   formData: null,
 };
 
+// Define the reducer function
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_FORM_DATA":
@@ -17,5 +18,7 @@ const reducer = (state = initialState, action) => {
   }
 };
 
+// Create the Redux store
 const store = createStore(reducer);
+
 export default store;

@@ -14,8 +14,7 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  
-    // Create an object with the form data
+
     const formData = {
       ipAddress,
       password,
@@ -23,12 +22,9 @@ function Login() {
 
     dispatch({ type: "SET_FORM_DATA", payload: formData });
 
-  
-    // Save the form data in localStorage
     localStorage.setItem("formData", JSON.stringify(formData));
-  
-    // Navigate to the header page
-    navigate("/header");
+
+    navigate("/home");
   };
   return (
     <div className="container">
@@ -41,17 +37,31 @@ function Login() {
             className="login-email"
             placeholder="IP address"
             value={ipAddress}
-            onChange={(e) => setIpAddress(e.target.value)}
+            required
+            onChange={(evt) => setIpAddress(evt.target.value)}
           />
-          <img className="icon-img" src={userImage} alt="user icon" width={"32"} height={"32"} />
+          <img
+            className="icon-img"
+            src={userImage}
+            alt="user icon"
+            width={"32"}
+            height={"32"}
+          />
           <input
             type="password"
             className="login-password"
             placeholder="Parol"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            required
+            onChange={(evt) => setPassword(evt.target.value)}
           />
-          <img className="icon-img" src={keyImage} alt="user icon" width={"32"} height={"32"} />
+          <img
+            className="icon-img"
+            src={keyImage}
+            alt="user icon"
+            width={"32"}
+            height={"32"}
+          />
           <button type="submit" className="login-btn">
             Kirish
           </button>
