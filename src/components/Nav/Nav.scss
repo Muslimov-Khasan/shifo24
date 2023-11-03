@@ -1,0 +1,40 @@
+.navbar {
+    width: 240px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .logo-link {
+    text-decoration: none;
+  }
+  
+  .logo {
+    object-fit: contain;
+    margin-left: 40px;
+    margin-bottom: 32px;
+  }
+  
+  .nav-menu {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-item {
+    margin-right: 20px;
+    margin-bottom: 22px;
+  }
+  
+  .nav-link {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .nav-link:hover {
+    text-decoration: underline;
+  }

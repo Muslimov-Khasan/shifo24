@@ -12,6 +12,7 @@
 .form {
   display: flex;
   margin: 0 auto;
+  transform: translateX(80px);
   flex-direction: column;
 }
 
@@ -46,7 +47,7 @@
   padding: 20px 30px;
   justify-content: center;
   align-items: flex-start;
-  background-color: #1182B6;
+  background-color: #1182b6;
   color: #fff;
   border: none;
   cursor: pointer;

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// Login.js
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./login.scss";
@@ -11,6 +12,14 @@ function Login() {
   const navigate = useNavigate();
   const [ipAddress, setIpAddress] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    const storedFormData = localStorage.getItem("formData");
+
+    if (storedFormData) {
+      navigate("/home");
+    }
+  }, [navigate]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -26,8 +35,9 @@ function Login() {
 
     navigate("/home");
   };
+
   return (
-    <div className="container">
+    <div className="contianer">
       <div className="wrapper-login">
         <img src={LoginImage} alt="login" width={"550"} />
         <form className="form" onSubmit={handleSubmit}>
