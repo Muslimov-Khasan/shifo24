@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-function Header({ formData }) {
-  // Use the form data in the header component
-  console.log(formData);
+function Header() {
+  useEffect(() => {
+    // Retrieve the form data from localStorage
+    const formData = JSON.parse(localStorage.getItem("formData"));
+
+    // Use the form data in the header component
+    console.log(formData);
+  }, []);
 
   return (
     <header>

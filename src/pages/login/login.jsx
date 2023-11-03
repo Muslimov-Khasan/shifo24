@@ -1,31 +1,40 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import "./login.scss";
 import LoginImage from "../../assets/img/login.jpg";
 import userImage from "../../assets/icon/usericon.svg";
 import keyImage from "../../assets/icon/key.svg";
 
-function Login({ onLogin }) {
+function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [ipAddress, setIpAddress] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+  
     // Create an object with the form data
     const formData = {
       ipAddress,
       password,
     };
 
-    // Pass the form data to the parent component
-    onLogin(formData);
-  };
+    dispatch({ type: "SET_FORM_DATA", payload: formData });
 
+  
+    // Save the form data in localStorage
+    localStorage.setItem("formData", JSON.stringify(formData));
+  
+    // Navigate to the header page
+    navigate("/header");
+  };
   return (
     <div className="container">
       <div className="wrapper-login">
         <img src={LoginImage} alt="login" width={"550"} />
-        <form className="form" role={"form"} onSubmit={handleSubmit}>
+        <form className="form" onSubmit={handleSubmit}>
           <h2 className="login-text">Tizimga kirish</h2>
           <input
             type="email"
