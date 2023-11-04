@@ -17,7 +17,7 @@ function Login() {
     const storedFormData = localStorage.getItem("formData");
 
     if (storedFormData) {
-      navigate("/home");
+      navigate("/Foydalanuvchilar");
     }
   }, [navigate]);
 
@@ -33,7 +33,7 @@ function Login() {
 
     localStorage.setItem("formData", JSON.stringify(formData));
 
-    navigate("/home");
+    navigate("/Foydalanuvchilar");
   };
 
   return (

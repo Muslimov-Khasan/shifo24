@@ -10,7 +10,7 @@ function App() {
     <FormDataProvider>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Header />} />
+        <Route path="/Foydalanuvchilar" element={<Header />} />
       </Routes>
     </FormDataProvider>
   );

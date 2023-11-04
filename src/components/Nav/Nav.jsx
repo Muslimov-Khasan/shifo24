@@ -8,20 +8,34 @@ const Nav = () => {
   return (
     <nav className="navbar">
       <div className="container">
-        <Link to="/" className="logo-link">
-          <img className="logo" src={Logo} alt="logo" width={135} height={40} />
-        </Link>
-        <ul className="nav-menu">
-          <li className="nav-item">
-            <Link to="/dashboard" className="nav-link">Dashboard</Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/settings" className="nav-link">Settings</Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/logout" className="nav-link">Logout</Link>
-          </li>
-        </ul>
+        <div className="no">
+          <Link to="/" className="logo-link">
+            <img
+              className="logo"
+              src={Logo}
+              alt="logo"
+              width={135}
+              height={40}
+            />
+          </Link>
+          <ul className={"nav-menu" ?? "nav-list"}>
+            <li className="nav-item">
+              <Link to="/dashboard" className="nav-link">
+              Guruhlar
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/Foydalanuvchilar" className="nav-link">
+              Foydalanuvchilar
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/logout" className="nav-link">
+                Logout
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );
