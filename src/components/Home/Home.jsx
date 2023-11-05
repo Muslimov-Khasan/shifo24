@@ -11,6 +11,7 @@ function Home() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
     const storedFormData = localStorage.getItem("formData");
@@ -28,6 +29,15 @@ function Home() {
 
   const handleCloseModal = () => {
     setShowModal(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleCloseModal();
+  };
+
+  const handleAddUser = (user) => {
+    setTableData([...tableData, user]);
   };
 
   return (
@@ -89,14 +99,8 @@ function Home() {
           },
         }}
       >
-        <div className="modal-inner">
-          <h2 className="modal-title">Foydalanuvchi qo'shish</h2>
-          <p className="modal-word">
-            Birinchidan, foydalanuvchi nomi va parolni kiriting. Keyin, siz
-            boshqa foydalanuvchi parametrlarini tahrirlashingiz mumkin bo'ladi
-          </p>
-        </div>
-        <form className="modal-form">
+        <div className="modal-inner">{/* Modal content */}</div>
+        <form className="modal-form" onSubmit={handleSubmit}>
           <label className="user-label" htmlFor="Foydalanuvchi nomi:">
             Foydalanuvchi nomi:
           </label>
@@ -115,7 +119,7 @@ function Home() {
           <label className="user-label" htmlFor="Parol:">
             Parol:
           </label>
-          <input className="user-name" type="text" placeholder="Parol" />
+          <input className="user-name" type="password" placeholder="Parol" />
           <label
             className="if-label"
             htmlFor="Majburiy. 150 yoki undan kam belgi. Faqat harflar, raqamlar va @/./+/-/_."
@@ -126,17 +130,16 @@ function Home() {
             bo'lishi mumkin emas. Parolingiz butunlay raqamli bo'lishi mumkin
             emas.
           </label>
-
           <label className="user-label" htmlFor="Foydalanuvchi nomi:">
-          Parolni tasdiqlash:
+            Parolni tasdiqlash:
           </label>
           <input
             className="user-name"
-            type="text"
+            type="password"
             placeholder="Parolni tasdiqlash:"
           />
           <div className="modal-buttons">
-            <button className="modal-btn" type="submit">
+            <button className="modal-btn" onClick={handleAddUser} type="submit">
               Save
             </button>
             <button className="modal-button" onClick={handleCloseModal}>
@@ -145,6 +148,35 @@ function Home() {
           </div>
         </form>
       </Modal>
+      <div className="contianer">
+        <table className="head-list">
+          <thead>
+            <tr>
+              <th>
+                <input type="checkbox" />
+              </th>
+              <th className="head-table">Foydalanuvchi nomi</th>
+              <th className="head-table">Elektron pochta manzili</th>
+              <th className="head-table">Ism</th>
+              <th className="head-table">Familiya</th>
+              <th className="head-table">Xodimlarning holati</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableData.map((user, index) => (
+              <tr className="data-list" key={index}>
+                <td>
+                  <input type="checkbox" />
+                </td>
+                <td className="data-item">{user.name}</td>
+                <td className="data-item">{user.email}</td>
+                <td className="data-item">{user.firstName}</td>
+                <td className="data-item">{user.lastName}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }

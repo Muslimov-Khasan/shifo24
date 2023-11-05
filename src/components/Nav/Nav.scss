@@ -1,8 +1,14 @@
 .navbar {
-  width: auto;
+  width: 280px;
   z-index: 30px;
-  padding: 0;
-  margin: 0;
+  // padding: 0;
+  // margin: 0;
+  // width: Hug (280px)
+  // height: Fixed (1,024px)
+  padding: 40px, 20px, 80px, 20px;
+  background-color: rgba(255, 255, 255, 1)  ;
+  border: 0px, 2px, 0px, 0px;
+  gap: 80px;
 }
 
 .logo-link {
@@ -31,7 +37,7 @@
 
 .nav-item {
   margin-right: 20px;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
   font-size: 18px;
   font-family: Poppins;
 }
@@ -50,6 +56,16 @@
   text-decoration: underline;
 }
 
+.active {
+  background-color: rgba(17, 130, 182, 1);
+  width: 240px;
+  height: 59px;
+  padding: 10px;
+  color: #fff;
+  border-radius: 10px;
+  gap: 8px;
+}
+
 .no {
-  margin-top: 70px;
+  margin-top: 0px;
 }
