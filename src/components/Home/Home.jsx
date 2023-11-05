@@ -11,15 +11,23 @@ function Home() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
     const storedFormData = localStorage.getItem("formData");
+    const storedTableData = localStorage.getItem("tableData");
 
     if (storedFormData) {
       setFormData(JSON.parse(storedFormData));
     } else {
       navigate("/");
+    }
+
+    if (storedTableData) {
+      setTableData(JSON.parse(storedTableData));
     }
   }, [navigate]);
 
@@ -33,11 +41,19 @@ function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleCloseModal();
-  };
+    const newUser = {
+      userName,
+      email,
+      password,
+    };
+    setFormData(newUser);
+    localStorage.setItem("formData", JSON.stringify(newUser));
 
-  const handleAddUser = (user) => {
-    setTableData([...tableData, user]);
+    const newTableData = [...tableData, newUser];
+    setTableData(newTableData);
+    localStorage.setItem("tableData", JSON.stringify(newTableData));
+
+    handleCloseModal();
   };
 
   return (
@@ -108,6 +124,8 @@ function Home() {
             className="user-name"
             type="text"
             placeholder="Foydalanuvchi nomi"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
           />
           <label
             className="email-label"
@@ -119,59 +137,44 @@ function Home() {
           <label className="user-label" htmlFor="Parol:">
             Parol:
           </label>
-          <input className="user-name" type="password" placeholder="Parol" />
-          <label
-            className="if-label"
-            htmlFor="Majburiy. 150 yoki undan kam belgi. Faqat harflar, raqamlar va @/./+/-/_."
-          >
-            Sizning parolingiz boshqa shaxsiy ma'lumotlaringizga juda o'xshash
-            bo'lishi mumkin emas. Parolingiz kamida 8 ta belgidan iborat
-            boʻlishi kerak. Sizning parolingiz tez-tez ishlatiladigan parol
-            bo'lishi mumkin emas. Parolingiz butunlay raqamli bo'lishi mumkin
-            emas.
-          </label>
-          <label className="user-label" htmlFor="Foydalanuvchi nomi:">
-            Parolni tasdiqlash:
+          <input
+            className="user-name"
+            type="email"
+            placeholder="Foydalanuvchi email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label className="user-label" htmlFor="Parol:">
+            Parol:
           </label>
           <input
             className="user-name"
             type="password"
-            placeholder="Parolni tasdiqlash:"
+            placeholder="Foydalanuvchi parol"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <div className="modal-buttons">
-            <button className="modal-btn" onClick={handleAddUser} type="submit">
-              Save
-            </button>
-            <button className="modal-button" onClick={handleCloseModal}>
-              Cancel
-            </button>
-          </div>
+          <button className="modal-btn" type="submit">
+            Saqlash
+          </button>
         </form>
       </Modal>
-      <div className="contianer">
-        <table className="head-list">
+
+      <div className="table-box">
+        <table className="table">
           <thead>
             <tr>
-              <th>
-                <input type="checkbox" />
-              </th>
-              <th className="head-table">Foydalanuvchi nomi</th>
-              <th className="head-table">Elektron pochta manzili</th>
-              <th className="head-table">Ism</th>
-              <th className="head-table">Familiya</th>
-              <th className="head-table">Xodimlarning holati</th>
+              <th>Foydalanuvchi nomi</th>
+              <th>Email</th>
+              <th>Parol</th>
             </tr>
           </thead>
           <tbody>
-            {tableData.map((user, index) => (
-              <tr className="data-list" key={index}>
-                <td>
-                  <input type="checkbox" />
-                </td>
-                <td className="data-item">{user.name}</td>
-                <td className="data-item">{user.email}</td>
-                <td className="data-item">{user.firstName}</td>
-                <td className="data-item">{user.lastName}</td>
+            {tableData.map((item, index) => (
+              <tr key={index}>
+                <td>{item.userName}</td>
+                <td>{item.email}</td>
+                <td>{item.password}</td>
               </tr>
             ))}
           </tbody>
