@@ -130,7 +130,7 @@ function Home() {
           </div>
         </div>
       </header>
-
+      
       <Modal
         isOpen={showModal}
         onRequestClose={handleCloseModal}
