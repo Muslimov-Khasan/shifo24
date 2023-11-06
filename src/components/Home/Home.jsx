@@ -14,6 +14,7 @@ function Home() {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
@@ -55,6 +56,7 @@ function Home() {
 
     handleCloseModal();
   };
+
 
   return (
     <>
@@ -139,34 +141,35 @@ function Home() {
           </label>
           <input
             className="user-name"
-            type="email"
-            placeholder="Foydalanuvchi email"
+            type="password"
+            placeholder="password"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label className="user-label" htmlFor="Parol:">
-            Parol:
+          <label className="user-label" htmlFor="Tasdiqlang parol:">
+            Tasdiqlang parol:
           </label>
           <input
             className="user-name"
             type="password"
-            placeholder="Foydalanuvchi parol"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder="parolni tasdiqlang"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <button className="modal-btn" type="submit">
             Saqlash
           </button>
-        </form>
+       </form>
       </Modal>
+
 
       <div className="table-box">
         <table className="table">
           <thead>
             <tr>
               <th>Foydalanuvchi nomi</th>
-              <th>Email</th>
               <th>Parol</th>
+              <th>Email</th>
             </tr>
           </thead>
           <tbody>
