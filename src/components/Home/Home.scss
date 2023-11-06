@@ -194,7 +194,8 @@
 }
 
 .table {
-  width: 100%;
+  width: 760px;
+  margin: 0 auto;
   border-collapse: collapse;
 }
 
@@ -212,4 +213,10 @@
 
 .table tr:last-child td {
   border-bottom: none;
+}
+
+.password-message {
+  margin: 0 auto;
+  width: 720px;
+  text-align: center;
 }

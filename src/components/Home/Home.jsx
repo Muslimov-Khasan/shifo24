@@ -17,6 +17,7 @@ function Home() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [tableData, setTableData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedSort, setSelectedSort] = useState("");
 
   useEffect(() => {
     const storedFormData = localStorage.getItem("formData");
@@ -66,6 +67,20 @@ function Home() {
     item.userName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const sortTableData = () => {
+    let sortedData = [...filteredTableData];
+
+    if (selectedSort === "username") {
+      sortedData.sort((a, b) => a.userName.localeCompare(b.userName));
+    } else if (selectedSort === "password") {
+      sortedData.sort((a, b) => a.password.localeCompare(b.password));
+    } else if (selectedSort === "email") {
+      sortedData.sort((a, b) => a.email.localeCompare(b.email));
+    }
+
+    return sortedData;
+  };
+
   return (
     <>
       <header className="header">
@@ -100,16 +115,15 @@ function Home() {
               </div>
 
               <section className="select-inner">
-                <select className="select-type">
-                  <option value="Xodimlar">Xodimlar maqomi bo'yicha</option>
-                </select>
-                <select className="select-type">
-                  <option value="Xodimlar">
-                    Superfoydalanuvchi holati bo'yicha
-                  </option>
-                </select>
-                <select className="select-type">
-                  <option value="Xodimlar">Faol tomonidan</option>
+                <select
+                  className="select-type"
+                  value={selectedSort}
+                  onChange={(e) => setSelectedSort(e.target.value)}
+                >
+                  <option value="">Sort by</option>
+                  <option value="username">Username</option>
+                  <option value="password">Password</option>
+                  <option value="email">Email</option>
                 </select>
               </section>
             </div>
@@ -160,6 +174,13 @@ function Home() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <p className="password-message">
+            Sizning parolingiz boshqa shaxsiy ma'lumotlaringizga juda o'xshash
+            bo'lishi mumkin emas. Parolingiz kamida 8 ta belgidan iborat
+            boʻlishi kerak. Sizning parolingiz tez-tez ishlatiladigan parol
+            bo'lishi mumkin emas. Parolingiz butunlay raqamli bo'lishi mumkin
+            emas.
+          </p>
           <label className="user-label" htmlFor="Tasdiqlang parol:">
             Tasdiqlang parol:
           </label>
@@ -186,7 +207,7 @@ function Home() {
             </tr>
           </thead>
           <tbody>
-            {filteredTableData.map((item, index) => (
+            {sortTableData().map((item, index) => (
               <tr key={index}>
                 <td>{item.userName}</td>
                 <td>{item.email}</td>
