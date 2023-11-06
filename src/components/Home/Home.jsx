@@ -16,6 +16,7 @@ function Home() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [tableData, setTableData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const storedFormData = localStorage.getItem("formData");
@@ -57,6 +58,13 @@ function Home() {
     handleCloseModal();
   };
 
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredTableData = tableData.filter((item) =>
+    item.userName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <>
@@ -69,6 +77,8 @@ function Home() {
               placeholder="Qidirish"
               className="header-input"
               type="search"
+              value={searchQuery}
+              onChange={handleSearch}
             />
             <div className="header-inner">
               <img src={Avtar} alt="user" width="48" height="48" />
@@ -81,7 +91,10 @@ function Home() {
             <div className="box">
               <div className="user-wrapper">
                 <h2 className="header-text">Foydalanuvchilar</h2>
-                <button className="header-btn" onClick={handleOpenModal}>
+                <button
+                  className="header-btn"
+                  onClick={() => setShowModal(true)}
+                >
                   Foydalanuvchi qo’shish +
                 </button>
               </div>
@@ -127,6 +140,7 @@ function Home() {
             type="text"
             placeholder="Foydalanuvchi nomi"
             value={userName}
+            required
             onChange={(e) => setUserName(e.target.value)}
           />
           <label
@@ -143,8 +157,8 @@ function Home() {
             className="user-name"
             type="password"
             placeholder="password"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <label className="user-label" htmlFor="Tasdiqlang parol:">
             Tasdiqlang parol:
@@ -159,9 +173,8 @@ function Home() {
           <button className="modal-btn" type="submit">
             Saqlash
           </button>
-       </form>
+        </form>
       </Modal>
-
 
       <div className="table-box">
         <table className="table">
@@ -173,7 +186,7 @@ function Home() {
             </tr>
           </thead>
           <tbody>
-            {tableData.map((item, index) => (
+            {filteredTableData.map((item, index) => (
               <tr key={index}>
                 <td>{item.userName}</td>
                 <td>{item.email}</td>
