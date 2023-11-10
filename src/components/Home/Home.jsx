@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Checkbox from "@mui/material/Checkbox";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-modal";
 
@@ -34,10 +35,6 @@ function Home() {
     }
   }, [navigate]);
 
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
   const handleCloseModal = () => {
     setShowModal(false);
   };
@@ -71,16 +68,20 @@ function Home() {
     let sortedData = [...filteredTableData];
 
     if (selectedSort === "username") {
-      sortedData.sort((a, b) => a.userName.localeCompare(b.userName));
+      sortedData.sort((a, b) =>
+        (a.userName ?? "").localeCompare(b.userName ?? "")
+      );
     } else if (selectedSort === "password") {
-      sortedData.sort((a, b) => a.password.localeCompare(b.password));
+      sortedData.sort((a, b) =>
+        (a.password ?? "").localeCompare(b.password ?? "")
+      );
     } else if (selectedSort === "email") {
-      sortedData.sort((a, b) => a.email.localeCompare(b.email));
+      sortedData.sort((a, b) => (a.email ?? "").localeCompare(b.email ?? ""));
     }
 
     return sortedData;
   };
-
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
   return (
     <>
       <header className="header">
@@ -115,6 +116,16 @@ function Home() {
               </div>
 
               <section className="select-inner">
+                <select className="select-type">
+                  <option>Xodimlar maqomi bo'yicha</option>
+                  <option>Admin</option>
+                  <option>Foydalanuvchi</option>
+                </select>
+                <select className="select-type">
+                  <option>Superfoydalanuvchi holati bo'yicha</option>
+                  <option>Admin</option>
+                  <option>Foydalanuvchi</option>
+                </select>
                 <select
                   className="select-type"
                   value={selectedSort}
@@ -130,7 +141,7 @@ function Home() {
           </div>
         </div>
       </header>
-      
+
       <Modal
         isOpen={showModal}
         onRequestClose={handleCloseModal}
@@ -201,17 +212,31 @@ function Home() {
         <table className="table">
           <thead>
             <tr>
+              <th>
+                <Checkbox {...label} disabled checked />
+              </th>
               <th>Foydalanuvchi nomi</th>
+              <th>Elektron pochta manzili</th>
+              <th>Ism</th>
+              <th>Familiya</th>
               <th>Parol</th>
-              <th>Email</th>
+              <th>Xodimlarning holati</th>
+              <th>...</th>
             </tr>
           </thead>
           <tbody>
             {sortTableData().map((item, index) => (
               <tr key={index}>
+                <td>
+                  <Checkbox {...label} />
+                </td>
+                <td>Admin</td>
                 <td>{item.userName}</td>
-                <td>{item.email}</td>
+                <td>Xurshid</td>
+                <td>Suyunov</td>
                 <td>{item.password}</td>
+                <td className="status-cell">Ish jarayonida</td>
+                <td>...</td>
               </tr>
             ))}
           </tbody>
