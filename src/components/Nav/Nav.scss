@@ -1,14 +1,11 @@
 .navbar {
-  width: 280px;
+  height: 720px;
   z-index: 30px;
-  // padding: 0;
-  // margin: 0;
-  // width: Hug (280px)
-  // height: Fixed (1,024px)
   padding: 40px, 20px, 80px, 20px;
   background-color: rgba(255, 255, 255, 1);
   border: 0px, 2px, 0px, 0px;
   gap: 80px;
+  box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.08);
 }
 
 .logo-link {
@@ -37,7 +34,6 @@
 
 .nav-item {
   width: 240px;
-  // margin-right: 20px;
   margin-bottom: 22px;
   font-size: 18px;
   font-family: Poppins;
@@ -80,4 +76,25 @@
 .app-text {
   text-align: center;
   color: rgba(158, 158, 158, 1);
+  margin-bottom: 22px;
+}
+
+.icon-list {
+  width: 60px;
+  margin: 0 auto;
+  list-style: none;
+  margin-bottom: 220px;
+}
+
+.icon-item {
+  margin-bottom: 17px;
+}
+
+.setting {
+  width: 240px;
+  height: auto;
+  margin: 0 auto;
+  padding: 16px, 32px, 16px, 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(158, 158, 158, 1);
 }
