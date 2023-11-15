@@ -69,7 +69,6 @@
   display: flex;
   flex-wrap: wrap;
   transform: translateY(-500px);
-
 }
 
 .header-btn {
@@ -80,6 +79,7 @@
   border: none;
   background-color: rgba(17, 130, 182, 1);
   color: #fff;
+  cursor: pointer;
   transform: translateX(100px);
 }
 
@@ -202,7 +202,6 @@
   top: 297px;
   left: 310px;
   transform: translateY(-500px);
-
 }
 
 .table {
@@ -226,7 +225,6 @@
   border-radius: 10px;
   color: rgba(0, 214, 85, 1);
   background-color: rgba(0, 214, 85, 0.2);
-  
 }
 
 .table th {

@@ -14,6 +14,7 @@ function Home() {
   const [showModal, setShowModal] = useState(false);
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
+  const [superUserStatus, setSuperUserStatus] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [tableData, setTableData] = useState([]);
@@ -64,9 +65,29 @@ function Home() {
     item.userName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // const sortTableData = () => {
+  //   let sortedData = [...filteredTableData];
+
+  //   if (selectedSort === "username") {
+  //     sortedData.sort((a, b) =>
+  //       (a.userName ?? "").localeCompare(b.userName ?? "")
+  //     );
+  //   } else if (selectedSort === "password") {
+  //     sortedData.sort((a, b) =>
+  //       (a.password ?? "").localeCompare(b.password ?? "")
+  //     );
+  //   } else if (selectedSort === "email") {
+  //     sortedData.sort((a, b) => (a.email ?? "").localeCompare(b.email ?? ""));
+  //   } else if (selectedSort === "byPosition") {
+  //     sortedData.sort((a, b) => a.position.localeCompare(b.position));
+  //   }
+
+  //   return sortedData;
+  // };
+
   const sortTableData = () => {
     let sortedData = [...filteredTableData];
-
+  
     if (selectedSort === "username") {
       sortedData.sort((a, b) =>
         (a.userName ?? "").localeCompare(b.userName ?? "")
@@ -78,7 +99,19 @@ function Home() {
     } else if (selectedSort === "email") {
       sortedData.sort((a, b) => (a.email ?? "").localeCompare(b.email ?? ""));
     }
+  
+    // Handle the sorting based on the second dropdown (super user status)
+    if (superUserStatus === "admin") {
+      sortedData.sort((a, b) => {
+        sortedData.sort((a, b) => (a.admin ?? "").localeCompare(b.admin ?? ""));
 
+      });
+    } else if (superUserStatus === "user") {
+      sortedData.sort((a, b) => {
+        sortedData.sort((a, b) => (a.user ?? "").localeCompare(b.user ?? ""));
+      });
+    }
+  
     return sortedData;
   };
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
@@ -88,7 +121,7 @@ function Home() {
         <div className="container">
           <div className="header-wrapper">
             <Navbar />
-            <SearchIcon className="search-icon" />
+            <SearchIcon className="search-icon" alt="Search" />
             <input
               placeholder="Qidirish"
               className="header-input"
@@ -116,10 +149,14 @@ function Home() {
               </div>
 
               <section className="select-inner">
-                <select className="select-type">
-                  <option>Xodimlar maqomi bo'yicha</option>
-                  <option>Admin</option>
-                  <option>Foydalanuvchi</option>
+                <select
+                  className="select-type super-user-status"
+                  value={superUserStatus}
+                  onChange={(e) => setSuperUserStatus(e.target.value)}
+                >
+                  <option value="">Superfoydalanuvchi holati bo'yicha</option>
+                  <option value="admin">Admin</option>
+                  <option value="user">Foydalanuvchi</option>
                 </select>
                 <select className="select-type">
                   <option>Superfoydalanuvchi holati bo'yicha</option>
